@@ -2,7 +2,7 @@
 
 ![image](./test1.png)
 
-![image2](.test3.png)
+![image2](./test3.png)
 
 image générées aléatoirement en fonction d'expression mathématiques aléatoires :
 
