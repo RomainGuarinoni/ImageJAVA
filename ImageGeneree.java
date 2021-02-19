@@ -9,6 +9,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class ImageGeneree extends JComponent {
+    private static final long serialVersionUID = 1L;
     Random graine = new Random();
     Expr exp_r;
     Expr exp_g;
@@ -46,6 +47,23 @@ public class ImageGeneree extends JComponent {
         }
     }
 
+    // fonction qui retourne le niveau de rouge, de vert ou de bleu d'un pixel en
+    // fonction de sa position et d'une expression mathématique
+    int createRGBlevel(int width, int height, int i, int j, Expr expr) {
+
+        // on réduit x et y a l'intervalle [-1,1]
+        double ratioX = i / (float) width;
+        double ratioY = j / (float) height;
+
+        // on évalue la fonction avec ratioX et ratioY
+        double Aux = expr.eval(ratioX, ratioY);
+
+        // Calcul des niveaux de rgb
+        int level = (int) (((float) 255 / 2) + (((float) 255 / 2) * Aux));
+
+        return level;
+    }
+
     void construitImage(int width, int height, int RLevel, int GLevel, int BLevel) {
         BufferedImage buff = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
 
@@ -58,22 +76,10 @@ public class ImageGeneree extends JComponent {
         // on parcours chaque pixel de l'image
         for (int i = 0; i < width; i++)
             for (int j = 0; j < height; j++) {
-
-                // on réduit x et y a l'intervalle [-1,1]
-                double ratioX = i / (float) width;
-                double ratioY = j / (float) height;
-
-                // on évalue les fonctions avec ratioX et ratioY
-                double rAux = this.exp_r.eval(ratioX, ratioY);
-                double gAux = this.exp_g.eval(ratioX, ratioY);
-                double bAux = this.exp_b.eval(ratioX, ratioY);
-
-                // Calcul des niveaux de rgb
-                int r = (int) (((float) 255 / 2) + (((float) 255 / 2) * rAux));
-                int g = (int) (((float) 255 / 2) + (((float) 255 / 2) * gAux));
-                int b = (int) (((float) 255 / 2) + (((float) 255 / 2) * bAux));
-
-                buff.setRGB(i, j, (new Color(r, g, b)).getRGB());
+                buff.setRGB(i, j,
+                        (new Color(createRGBlevel(width, height, i, j, this.exp_r),
+                                createRGBlevel(width, height, i, j, this.exp_g),
+                                createRGBlevel(width, height, i, j, this.exp_b))).getRGB());
             }
         ;
         im = buff;

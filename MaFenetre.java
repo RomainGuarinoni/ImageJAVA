@@ -12,6 +12,8 @@ import java.awt.event.*;
 ///////////////////////////////////////////////////////////////////////////
 
 public class MaFenetre extends JFrame {
+
+    private static final long serialVersionUID = 1L;
     private JButton quitter, sauvegarder, generer;
     private JLabel label1, label2, label3;
     private int rScroll = 0;
@@ -46,6 +48,8 @@ public class MaFenetre extends JFrame {
         });
         sauvegarder.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+
+                // méthode qui sauvegarde l'image dans le dossier de l'app
                 im.sauvegarder();
             }
         });
@@ -72,11 +76,6 @@ public class MaFenetre extends JFrame {
         scrollR.setPreferredSize(new Dimension(190, 15));
         scrollG.setPreferredSize(new Dimension(190, 15));
         scrollB.setPreferredSize(new Dimension(190, 15));
-
-        // ajout valeur base scrooll
-        scrollR.setValue(40);
-        scrollG.setValue(40);
-        scrollB.setValue(40);
 
         // set maximum complexity
 
