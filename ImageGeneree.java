@@ -5,8 +5,6 @@ import java.awt.*;
 import java.awt.image.*;
 import javax.imageio.ImageIO;
 import java.io.*;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 public class ImageGeneree extends JComponent {
     private static final long serialVersionUID = 1L;
@@ -94,10 +92,6 @@ public class ImageGeneree extends JComponent {
     public void sauvegarder(String name) {
         imageIndex++;
         try {
-
-            // on récupère la date d'aujourd,hui pour faire une photo unique
-            // SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yy-HH-mm-ss");
-            // Date date = new Date();
             File f = new File(name + ".jpg");
             ImageIO.write(im, "jpg", f);
         } catch (IOException e) {
