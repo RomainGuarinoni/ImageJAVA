@@ -91,14 +91,14 @@ public class ImageGeneree extends JComponent {
 
     }
 
-    public void sauvegarder() {
+    public void sauvegarder(String name) {
         imageIndex++;
         try {
 
             // on récupère la date d'aujourd,hui pour faire une photo unique
-            SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yy-HH-mm-ss");
-            Date date = new Date();
-            File f = new File("fondEcran" + dateFormat.format(date) + ".jpg");
+            // SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yy-HH-mm-ss");
+            // Date date = new Date();
+            File f = new File(name + ".jpg");
             ImageIO.write(im, "jpg", f);
         } catch (IOException e) {
         }

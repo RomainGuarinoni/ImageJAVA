@@ -49,8 +49,16 @@ public class MaFenetre extends JFrame {
         sauvegarder.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
 
-                // méthode qui sauvegarde l'image dans le dossier de l'app
-                im.sauvegarder();
+                // on ouvre la nouvelle boite de dialogue pour récupérer le nom de notre image à
+                // enregistrer
+                Input input = new Input(MaFenetre.this);
+
+                // on attend que la méthode getName nous retourne uine valeur
+                String name = input.getName();
+
+                // on enregistre cette image avec la valeur name retourner
+                im.sauvegarder(name);
+
             }
         });
         generer.addActionListener(new ActionListener() {
